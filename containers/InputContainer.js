@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { handleSubmitOnInput, handleChangeOnInput } from "../actions/InputActions";
 
 const mapStateToProps = (state) => {
-    console.error("action-state in mapStateToProps", state)
     return {
         inputValue: state.inputValue,
     }
