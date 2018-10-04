@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-const InputContainer = (props) => {
+const inputContainer = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <input type="text"  value= {props.inputValue} onChange={props.handleChange} />
@@ -29,4 +29,4 @@ const InputContainer = (props) => {
     )
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(InputContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(inputContainer);

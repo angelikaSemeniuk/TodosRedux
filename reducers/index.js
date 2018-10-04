@@ -1,4 +1,4 @@
-const initialState = { items: [], inputValue: "" };
+const initialState = { items: [], inputValue: "", status: "all"};
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -7,7 +7,7 @@ const reducer = (state = initialState, action) => {
         }
         case "HANDLE_SUBMIT_ON_INPUT" : {
             return state = Object.assign({}, state, {
-                items: [...state.items, {text: state.inputValue, completed: false}],
+                items: [...state.items, {text: state.inputValue, completed: false, status: "all"}],
                 inputValue: "",
             })
         }
@@ -25,6 +25,48 @@ const reducer = (state = initialState, action) => {
         }
         case "HANDLE_CLEAR_BUTTON" : {
             state.items.splice(action.index, 1);
+            return state = Object.assign({}, state, {
+                items: [...state.items]
+            })
+        }
+        case "HANDLE_ACTIVE_BUTTON" : {
+            state.items.forEach((item) => {
+                if(!item.completed) {
+                    item.status = "active"
+                }
+            });
+            return state = Object.assign({}, state, {
+                items: [...state.items],
+                status: "active"
+            })
+        }
+        case "HANDLE_COMPLETED_BUTTON" : {
+            state.items.forEach((item) => {
+                if(item.completed) {
+                    item.status = "completed"
+                }
+            });
+            return state = Object.assign({}, state, {
+                items: [...state.items],
+                status: "completed"
+            })
+        }
+        case "HANDLE_ALL_BUTTON" : {
+            state.items.forEach((item) => {
+                    item.status = "all"
+            });
+            return state = Object.assign({}, state, {
+                items: [...state.items],
+                status: "all"
+            })
+        }
+        case "HANDLE_CLEAR_COMPLETED_BUTTON" : {
+            for(let i = 0; i< state.items.length; i++) {
+                if(state.items[i].completed) {
+                    state.items.splice(i,1);
+                    i--;
+                }
+            }
             return state = Object.assign({}, state, {
                 items: [...state.items]
             })
