@@ -14,13 +14,19 @@ const reducer = (state = initialState, action) => {
         case "CHECK_BOX_CHANGE" : {
             return state = Object.assign({}, state, {
                 items: state.items.map((item, index) => {
-                    if(index === action.index) {
+                    if (index === action.index) {
                         return Object.assign({}, item, {
                             completed: action.value
                         })
                     }
                     return item
                 })
+            })
+        }
+        case "HANDLE_CLEAR_BUTTON" : {
+            state.items.splice(action.index, 1);
+            return state = Object.assign({}, state, {
+                items: [...state.items]
             })
         }
     }
