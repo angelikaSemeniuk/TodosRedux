@@ -4,8 +4,8 @@ import { handleCheckBoxChange, handleClearButton } from "../actions/ListActions"
 
 const mapStateToProps = (state) => {
     return {
-        items: state.items,
-        status: state.status,
+        items: state.listReducer.items,
+        status: state.statusesReducer.status,
     }
 };
 
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const listContainer = (props) => {
     const listItems = props.items.map((item, index) => {
-        if (props.status === item.status) {
+        if (props.status === "all" || props.status === item.status) {
             return (
                 <li key={index}>
                     <input type="checkbox" checked={item.completed} onChange={props.handleCheckBoxChange.bind(this, index)}/>

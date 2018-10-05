@@ -4,7 +4,7 @@ import { handleSubmitOnInput, handleChangeOnInput } from "../actions/InputAction
 
 const mapStateToProps = (state) => {
     return {
-        inputValue: state.inputValue,
+        inputValue: state.listReducer.inputValue,
     }
 };
 

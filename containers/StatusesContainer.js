@@ -4,9 +4,8 @@ import { handleActiveButton, handleCompletedButton, handleAllButton, handleClear
 
 
 const mapStateToProps = (state) => {
-    console.error("action-ListContainer state", state);
     return {
-        items: state.items,
+        items: state.listReducer.items,
     }
 };
 
